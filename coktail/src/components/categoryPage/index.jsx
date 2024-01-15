@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { api } from '@/utils/api'
 import useInfiniteScroll from '@/hooks/useInfiniteScroll'
+
 // components
 import ProductList from '@/components/productList'
 import FilterPage from '@/components/filterPage/'
@@ -13,7 +14,7 @@ import Title from '@/components/title'
 import DataNotFound from '@/components/dataNotFound'
 
 // icons
-import Pencil from '@/assets/svg/pencil.svg?react'
+import PencilIcon from '@components/icons/PencilIcon'
 
 const perPage = 6
 
@@ -197,7 +198,7 @@ export default function CategoryPage({ searchType, title, url }) {
           {searchType === 'recipes' && (
             <Styled.link to="/recipes/register">
               레시피 올리기
-              <Pencil />
+              <PencilIcon />
             </Styled.link>
           )}
         </Styled.titleContainer>

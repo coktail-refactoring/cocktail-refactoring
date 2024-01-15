@@ -1,7 +1,8 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-import Recipe from '@/assets/svg/recipe_icon.svg?react';
-import { primaryGray, thirdGray, primaryBlue } from '@/assets/styleVariables';
+//icons
+import RecipeIcon from '@components/icons/RecipeIcon'
+import { primaryGray, thirdGray, primaryBlue } from '@/assets/styleVariables'
 
 export const LikeMenuContainer = styled.div`
   display: flex;
@@ -50,8 +51,7 @@ export const LikeMenuBox = styled.div`
   }
 `
 
-
-export const ActivityRecipe = styled(Recipe)`
+export const ActivityRecipe = styled(RecipeIcon)`
   width: 80px;
   height: 70px;
   path {

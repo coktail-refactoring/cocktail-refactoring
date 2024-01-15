@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
 
-/* img */
+/* icons */
 import BrokenGlass from '@/assets/svg/broken_glass.svg?react'
-import PreArrowBtn from '@/assets/svg/white_preArrow_icon.svg?react'
+import PreArrowIcon from '@components/icons/PreArrowIcon'
 
 export default function NotFoundPage() {
   const navigate = useNavigate()
@@ -17,7 +17,7 @@ export default function NotFoundPage() {
       <div>
         <BackBtnWrap>
           <button className="backBtn" onClick={backBtnHandler}>
-            <PreArrowBtn width="25" />
+            <PreArrowIcon width="25" fill={'white'} />
           </button>
         </BackBtnWrap>
         <ContentWrap>
