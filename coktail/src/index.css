@@ -3,6 +3,11 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: 'Noto Sans KR';
   font-style: normal;
