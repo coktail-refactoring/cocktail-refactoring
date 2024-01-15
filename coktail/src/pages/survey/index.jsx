@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-//styled components
+//styled component
 import * as Styled from './Survey.style'
 
 //components
@@ -13,8 +13,6 @@ import ResultPage from './ResultPage'
 import questions from './surveyData'
 
 //Icon
-import NextArrowIcon from '@components/icons/NextArrowIcon'
-import PreArrowIcon from '@components/icons/PreArrowIcon'
 import LogoIcon from '@components/icons/LogoIcon'
 import CloseIcon from '@components/icons/CloseIcon'
 
@@ -25,9 +23,6 @@ export default function SurveyPage() {
     base: '',
     abv: 0,
     taste: '',
-    // sweet: 0,
-    // sour: 0,
-    // bitter: 0,
   })
 
   const handleStart = () => {
@@ -35,27 +30,17 @@ export default function SurveyPage() {
   }
 
   const handleAnswerSelected = (answer) => {
-    if (currentPage === 1) {
-      setUserSelections({ ...userSelections, base: answer })
-    } else if (currentPage === 2) {
-      const abvMapping = { '낮은 도수': 1, '중간 도수': 2, '높은 도수': 3 }
-      setUserSelections({ ...userSelections, abv: abvMapping[answer] })
-    } else if (currentPage === 3) {
-      const tasteValues = {
-        달달하게: 'sweet',
-        새콤하게: 'sour',
-        씁슬하게: 'bitter',
-      }
-
-      const selectedTaste = tasteValues[answer]
-      // const tasteUpdate = { sweet: 0, sour: 0, bitter: 0 }
-      // if (selectedTaste) {
-      //   tasteUpdate[selectedTaste] = 3
-      // }
-
-      setUserSelections({ ...userSelections, taste: selectedTaste })
+    const mappingPage = {
+      1: { base: answer },
+      2: { abv: { '낮은 도수': 1, '중간 도수': 2, '높은 도수': 3 }[answer] },
+      3: {
+        taste: { 달달하게: 'sweet', 새콤하게: 'sour', 씁슬하게: 'bitter' }[
+          answer
+        ],
+      },
     }
 
+    setUserSelections({ ...userSelections, ...mappingPage[currentPage] })
     setCurrentPage(currentPage + 1)
   }
 
@@ -64,7 +49,6 @@ export default function SurveyPage() {
     setUserSelections({
       base: '',
       abv: 0,
-      // taste: { sweet: 0, sour: 0, bitter: 0 },
       taste: '',
     })
   }
@@ -81,40 +65,37 @@ export default function SurveyPage() {
     backgroundSize: 'cover',
   }
 
+  function GoToHome() {
+    navigate('/')
+  }
+
+  function BackToPage() {
+    navigate(-1)
+  }
+
   return (
     <Styled.ContainerSurvey style={containerStyle}>
       <Styled.ContainerHeader>
-        <div
-          onClick={() => {
-            navigate('/')
-          }}
-        >
+        <div onClick={GoToHome}>
           <LogoIcon width={100} height={80} fill={'#545454'} />
         </div>
-        <div
-          onClick={() => {
-            navigate(-1)
-          }}
-        >
+        <div onClick={BackToPage}>
           <CloseIcon width={20} height={70} fill={'#545454'} />
         </div>
       </Styled.ContainerHeader>
 
       <Styled.ContentDiv>
-        {/* <PreArrowIcon /> */}
         {currentPage === 0 && <StartPage onStart={handleStart} />}
         {currentPage >= 1 && currentPage <= 3 && (
           <QuestionPage
             question={questions[currentPage]}
             answers={questions[currentPage].answers}
             onAnswerSelected={handleAnswerSelected}
-            style={{ height: 'calc(100% - 80px)' }}
           />
         )}
         {currentPage === 4 && (
           <ResultPage selections={userSelections} onRestart={handleRestart} />
         )}
-        {/* <NextArrowIcon /> */}
       </Styled.ContentDiv>
     </Styled.ContainerSurvey>
   )

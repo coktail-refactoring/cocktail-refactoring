@@ -1,15 +1,20 @@
 import { createSearchParams, useNavigate } from 'react-router-dom'
 import { api } from '@/utils/api'
+
+//styled component
 import * as Styled from './Survey.style'
+
+function TasteLevel(selectedTaste, targetTaste) {
+  return selectedTaste === targetTaste ? 3 : null
+}
 
 function ResultPage({ selections = {} }) {
   const navigate = useNavigate()
-  const base = selections.base
-  const abv = selections.abv
-  const taste = selections.taste
-  const sweet = taste === 'sweet' ? 3 : null
-  const sour = taste === 'sour' ? 3 : null
-  const bitter = taste === 'bitter' ? 3 : null
+  const { base, abv, taste } = selections
+
+  const sweet = TasteLevel(taste, 'sweet')
+  const sour = TasteLevel(taste, 'sour')
+  const bitter = TasteLevel(taste, 'bitter')
 
   // 커스텀 put API 설정
   const putCustomCocktail = async () => {
@@ -20,7 +25,6 @@ function ResultPage({ selections = {} }) {
       level: 3,
     }
     await api.put('/users/custom', data)
-    console.log(data)
   }
 
   const handleRecommendation = () => {
