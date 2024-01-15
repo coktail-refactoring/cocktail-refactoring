@@ -40,14 +40,10 @@
     - `Node JS` `MongoDB` `express` `swagger` `Postman`
 - 협업 툴
     - `Figma`  `gitlab`📚
+  
 <br/>
 <br/>
-##### 📊와이어 프레임과 API 문서
-- [와이어 프레임](https://www.figma.com/file/dVYE7mWmat7LOuKg5u1LA6/%EC%B9%B5%ED%85%8C%EC%9D%BC-%EC%B6%94%EC%B2%9C-%EC%82%AC%EC%9D%B4%ED%8A%B8?type=design&node-id=0%3A1&mode=design&t=iffXigFAVta5RNJs-1)
 
-- [API 명세서(스웨거)](http://kdt-sw-7-team07.elicecoding.com/api-docs/)
-<br/>
-<br/>
 #### 💡컨벤션
 
 **커밋 컨벤션**
