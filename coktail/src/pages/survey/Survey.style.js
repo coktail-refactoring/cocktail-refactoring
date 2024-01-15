@@ -26,9 +26,7 @@ export const ContentDiv = styled.div`
   display: flex;
   justify-content: center;
   display: flex;
-  /* justify-content: space-between; */
   padding: 0 10px;
-  /* align-items: baseline; */
 `
 
 //StartPage.jsx

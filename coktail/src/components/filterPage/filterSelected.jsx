@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
 // icons
-import FilterIcon from '@/assets/svg/filter.svg?react'
-import Alcohol from '@/assets/svg/alcohol.svg'
-import Sweet from '@/assets/svg/sweet.svg'
-import Sour from '@/assets/svg/sour.svg'
+import AlcoholIcon from '@components/icons/AlcoholIcon'
+import SweetIcon from '@components/icons/SweetIcon'
+import SourIcon from '@components/icons/SourIcon'
+import FilterIcon from '@components/icons/FilterIcon'
 import Bitter from '@/assets/svg/bitter.svg'
 
 import { StyledTag } from './style'
@@ -13,9 +13,9 @@ import { useState, useEffect } from 'react'
 const optionsName = [null, '도수', '단맛', '신맛', '쓴맛']
 const options = [
   null,
-  ['도수', Alcohol],
-  ['단맛', Sweet],
-  ['신맛', Sour],
+  ['도수', AlcoholIcon],
+  ['단맛', SweetIcon],
+  ['신맛', SourIcon],
   ['쓴맛', Bitter],
 ]
 

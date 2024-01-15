@@ -21,7 +21,7 @@ import groupImg from '@/assets/group.png'
 
 //icons
 import { FaStar } from 'react-icons/fa'
-import NextArrow from '@/assets/svg/nextArrow_icon.svg?react'
+import NextArrowIcon from '@components/icons/NextArrowIcon'
 
 const settings = {
   dots: true,
@@ -155,7 +155,7 @@ export default function MainPage() {
             <Link to={'/survey'}>
               <div>
                 취향 등록하고 추천받기
-                <NextArrow />
+                <NextArrowIcon />
               </div>
             </Link>
           </div>
