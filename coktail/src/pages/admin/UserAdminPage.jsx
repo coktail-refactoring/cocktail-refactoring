@@ -88,13 +88,13 @@ const UserAdminPage = () => {
   return (
     <Styled.Container>
       <Title text="유저 관리" />
-      <Styled.SearchContainer>
+      <div className="searchContainer">
         <Search
           value={searchQuery}
           onChange={handleSearchChange}
           onSearchClickHandler={getUserList}
         />
-      </Styled.SearchContainer>
+      </div>
       <Table
         headers={headerUserData}
         datas={currentData}

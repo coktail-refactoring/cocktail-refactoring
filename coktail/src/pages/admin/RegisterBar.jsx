@@ -80,14 +80,14 @@ export default function RegisterBar() {
   }
 
   return (
-    <Styled.BarContainer onSubmit={submitHandler}>
+    <Styled.ProductContainer onSubmit={submitHandler}>
       <Title text="Bar 등록" />
       <Styled.ContentContainer>
         <div className="ImageContainer">
           <ImageUpload setImgs={(imgs) => setImage(imgs)} />
         </div>
         <div className="InputContainer">
-          <Styled.Input
+          <input
             setName={setName}
             type="text"
             placeholder="Bar 이름"
@@ -95,7 +95,7 @@ export default function RegisterBar() {
               setName(e.target.value)
             }}
           />
-          <Styled.Input
+          <input
             type="text"
             setAddress={(e) => setAddress(e)}
             placeholder="상세주소 : 서울시 강남구 선릉로 152길"
@@ -103,15 +103,16 @@ export default function RegisterBar() {
               inputChangeHandler(e)
             }}
           />
-          <Styled.CoordinateContainer>
-            <button onClick={addressToCoordinate} type="button">
-              주소로 좌표 검색
-            </button>
-            <input type="text" placeholder="x" value={coordinate.x} readOnly />
-            <br />
-            <input type="text" placeholder="y" value={coordinate.y} readOnly />
-          </Styled.CoordinateContainer>
-          <Styled.Input
+          <button
+            className="coordinateBtn"
+            onClick={addressToCoordinate}
+            type="button"
+          >
+            주소로 좌표 검색
+          </button>
+          <input type="text" placeholder="x" value={coordinate.x} readOnly />
+          <input type="text" placeholder="y" value={coordinate.y} readOnly />
+          <input
             type="text"
             setTel={(e) => setTel(e)}
             placeholder="연락처 : 02) 1234-1234"
@@ -119,7 +120,7 @@ export default function RegisterBar() {
               setTel(e.target.value)
             }}
           />
-          <Styled.Input
+          <input
             type="text"
             setTime={(e) => setTime(e)}
             placeholder="운영시간 : 20:00 ~ 4:00"
@@ -138,6 +139,6 @@ export default function RegisterBar() {
         </button>
       </Styled.ButtonGroup>
       <Toaster /> {/* Toaster 컴포넌트 추가 */}
-    </Styled.BarContainer>
+    </Styled.ProductContainer>
   )
 }

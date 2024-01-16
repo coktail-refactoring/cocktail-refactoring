@@ -59,14 +59,14 @@ export default function RegisterBase() {
   }
 
   return (
-    <Styled.BaseContainer onSubmit={submitHandler}>
+    <Styled.ProductContainer onSubmit={submitHandler}>
       <Title text="Base 등록" />
       <div>
         <div className="ImageBaseContainer">
           <ImageUpload setImgs={(e) => setImages(e)} />
         </div>
         <div className="InputBaseContainer">
-          <Styled.Input
+          <input
             value={name}
             type="text"
             onChange={nameHandler}
@@ -83,6 +83,6 @@ export default function RegisterBase() {
         </button>
       </Styled.ButtonGroup>
       <Toaster /> {/* Toaster 컴포넌트 추가 */}
-    </Styled.BaseContainer>
+    </Styled.ProductContainer>
   )
 }

@@ -40,18 +40,18 @@ import NotFoundPage from './pages/notFound'
 import AdminLayout from './components/layouts/admin'
 import AdminPage from './pages/admin'
 import UserAdminPage from './pages/admin/UserAdminPage'
-import ProductAdminPage from './pages/admin/ProductAdminPage'
+import CocktailAdminPage from './pages/admin/CocktailAdminPage'
 import ReviewAdminPage from './pages/admin/ReviewAdminPage'
 import RecipeAdminPage from './pages/admin/RecipeAdminPage'
-import RegisterProduct from './pages/admin/RegisterProduct'
+import RegisterCocktail from './pages/admin/RegisterCocktail'
 import BarAdminPage from './pages/admin/BarAdminPage'
 import RegisterBar from './pages/admin/RegisterBar'
 import BaseAdminPage from './pages/admin/BaseAdminPage'
 import RegisterBase from './pages/admin/RegisterBase'
-import EditProduct from './pages/admin/EditProduct'
+import EditCocktail from './pages/admin/EditCocktail'
 import EditBase from './pages/admin/EditBase'
 import EditBar from './pages/admin/EditBar'
-import TestLoginPage from './pages/login/TestLogin';
+import TestLoginPage from './pages/login/TestLogin'
 
 export const router = createBrowserRouter([
   {
@@ -188,15 +188,15 @@ export const router = createBrowserRouter([
       },
       {
         path: 'cocktails',
-        element: <ProductAdminPage />,
+        element: <CocktailAdminPage />,
       },
       {
         path: 'cocktails/register',
-        element: <RegisterProduct />,
+        element: <RegisterCocktail />,
       },
       {
         path: 'cocktails/edit',
-        element: <EditProduct />,
+        element: <EditCocktail />,
       },
       {
         path: 'reviews',

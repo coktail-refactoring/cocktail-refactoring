@@ -93,13 +93,13 @@ const ReviewAdminPage = () => {
   return (
     <Styled.Container>
       <Title text="리뷰 관리" />
-      <Styled.SearchContainer>
+      <div className="searchContainer">
         <Search
           value={searchQuery}
           onChange={handleSearchChange}
           onSearchClickHandler={getReviewList}
         />
-      </Styled.SearchContainer>
+      </div>
       <Styled.StyledSelect onChange={handleSelectChange}>
         {options.map((option, index) => (
           <option key={index} value={option.value}>
