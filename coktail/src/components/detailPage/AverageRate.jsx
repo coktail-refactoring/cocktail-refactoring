@@ -7,7 +7,7 @@ export default function AverageRate({ data }) {
 
   // console.log(data)
 
-  const getRatesData = () => {
+  const avrRate = () => {
     if (!data.reviews) return
     const ratesArr = data.reviews.map((i) => i.rating)
     const sum = ratesArr.reduce((acc, value) => acc + value, 0)
@@ -16,7 +16,7 @@ export default function AverageRate({ data }) {
   }
 
   useEffect(() => {
-    getRatesData()
+    avrRate()
   }, [])
 
   return (
