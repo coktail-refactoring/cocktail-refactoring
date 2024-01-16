@@ -42,10 +42,13 @@ export const ProductContainer = styled.div`
   //Base
   .ImageBaseContainer {
     height: 45vh;
+    width: 400px;
   }
 
   .InputBaseContainer {
     margin-top: 10px;
+    display: flex;
+    justify-content: center;
   }
 
   input {
@@ -85,7 +88,7 @@ export const ToggleTd = styled.td`
   padding: 0.5rem 0;
 `
 
-/* RegisterBar.jsx */
+/* Bar */
 export const ContentContainer = styled.div`
   display: flex;
   width: 100%;
@@ -112,64 +115,21 @@ export const ContentContainer = styled.div`
   }
 `
 
-//상품등록
-export const ProductContentContainer = styled.div`
+/* Cocktail */
+export const CocktailContainer = styled.div`
   display: flex;
 
-  .ImgContainer {
-    width: 350px;
-    height: 350px;
-    padding-right: 10px;
+  .ImageContainer {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .TextareaContainer {
+    width: 200px;
   }
 `
 
-export const InpStarContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-
-  .NameContainer {
-    display: flex;
-    flex-direction: column;
-    width: 350px;
-    gap: 20px;
-    input {
-      padding: 10px;
-    }
-  }
-`
-
-export const StarContainer = styled.div`
-  display: flex;
-  gap: 30px;
-  padding-top: 20px;
-
-  .rating {
-    padding-bottom: 10px;
-  }
-`
-
-export const RatingBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  .ratingWrap {
-    display: flex;
-    align-items: center;
-  }
-`
-
-export const TextAreaContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-top: 20px;
-  width: 60%;
-  gap: 30px;
-`
-
-export const CocktailForm = styled.form`
-  display: flex;
-  flex-direction: column;
-`
+export const StarContainer = styled.div``
 
 //admin 페이지
 export const Content = styled.h1`

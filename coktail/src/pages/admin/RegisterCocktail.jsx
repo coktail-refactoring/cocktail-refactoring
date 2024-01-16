@@ -74,51 +74,45 @@ export default function RegisterProduct() {
   return (
     <Styled.ProductContainer onSubmit={submitHandler}>
       <Title text="칵테일 등록" />
-      <Styled.ProductContentContainer>
-        <div className="ImgContainer">
+      <Styled.CocktailContainer>
+        <div className="ImageContainer">
           <ImageUpload setImgs={setImages} />
         </div>
-
-        <Styled.InpStarContainer>
-          <div className="NameContainer">
-            <Naming setName={setName} setBase={setBase} setTagArr={setTags} />
+        <div className="NameContainer">
+          <Naming setName={setName} setBase={setBase} setTagArr={setTags} />
+        </div>
+        <Styled.StarContainer>
+          <div>
+            <div>도수</div>
+            <StarRating setRating={(r) => setAbv(r)} />
           </div>
-
-          <Styled.StarContainer>
-            <div className="ratingWrap">
-              <div className="rating">
-                <div>도수</div>
-                <StarRating setRating={(r) => setAbv(r)} />
-              </div>
-              <div className="rating">
-                <div>단맛</div>
-                <StarRating setRating={(r) => setSweet(r)} />
-              </div>
-            </div>
-            <div className="ratingWrap">
-              <div className="rating">
-                <div>신맛</div>
-                <StarRating setRating={(r) => setSour(r)} />
-              </div>
-              <div className="rating">
-                <div>쓴맛</div>
-                <StarRating setRating={(r) => setBitter(r)} />
-              </div>
-            </div>
-          </Styled.StarContainer>
-        </Styled.InpStarContainer>
-      </Styled.ProductContentContainer>
-      <Styled.TextAreaContainer>
+          <div>
+            <div>단맛</div>
+            <StarRating setRating={(r) => setSweet(r)} />
+          </div>
+          <div>
+            <div>신맛</div>
+            <StarRating setRating={(r) => setSour(r)} />
+          </div>
+          <div>
+            <div>쓴맛</div>
+            <StarRating setRating={(r) => setBitter(r)} />
+          </div>
+        </Styled.StarContainer>
+      </Styled.CocktailContainer>
+      <div className="TextareaContainer">
         <TitleAndTextarea
           className="textArea_input"
           title="소개글"
           setContent={setDescription}
         />
+      </div>
+      <div className="TextareaContainer">
         <TitleAndTextarea title="재료" setContent={setIngredient} />
-        <div className="RecipesStepContainer">
-          <RecipesStep title="레시피" setRecipes={setRecipeArr} />
-        </div>
-      </Styled.TextAreaContainer>
+      </div>
+      <div>
+        <RecipesStep title="레시피" setRecipes={setRecipeArr} />
+      </div>
       <Styled.ButtonGroup>
         <button onClick={cancelHandler} className="btn cancelBtn">
           취소
