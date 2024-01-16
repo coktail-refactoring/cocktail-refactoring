@@ -42,6 +42,10 @@ export const MenuItem = styled.div`
   }
 `
 
+export const BottomItemContainer = styled.div`
+  display: flex;
+`
+
 export const MenuICon = styled.div`
   /* margin-right: 5px; */
 `

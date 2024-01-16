@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import * as Styled from './Sidebar.style'
-import axios from 'axios'
+import { api } from '@/utils/api'
 
-//icon
+//icons
 import PersonIcon from '@components/icons/PersonIcon'
 import CocktailIcon from '@components/icons/CocktailIcon'
 import ReviewIcon from '@components/icons/ReviewIcon'
@@ -59,7 +59,7 @@ export default function Sidebar() {
 
   const kakaoLogout = async () => {
     try {
-      const logout = await axios.delete('/users/logout')
+      const logout = await api.delete('/users/logout')
 
       if (logout.status === 204) {
         setUser({})
@@ -70,6 +70,11 @@ export default function Sidebar() {
       console.error(error)
     }
   }
+
+  function GotoHome() {
+    navigate('/')
+  }
+
   return (
     <Styled.SidebarContainer>
       <div>
@@ -90,22 +95,20 @@ export default function Sidebar() {
           </Link>
         ))}
       </div>
-      <div>
-        <Link to={'/'}>
-          <Styled.MenuItem>
-            <Styled.MenuICon>
-              <LogoutIcon />
-            </Styled.MenuICon>
-            <span className="sideText">나가기</span>
-          </Styled.MenuItem>
-        </Link>
+      <Styled.BottomItemContainer>
+        <Styled.MenuItem onClick={GotoHome}>
+          <Styled.MenuICon>
+            <LogoutIcon />
+          </Styled.MenuICon>
+          <span className="sideText">나가기</span>
+        </Styled.MenuItem>
         <Styled.MenuItem onClick={() => kakaoLogout()}>
           <Styled.MenuICon>
             <LogoutIcon />
           </Styled.MenuICon>
           <span className="sideText">로그아웃</span>
         </Styled.MenuItem>
-      </div>
+      </Styled.BottomItemContainer>
     </Styled.SidebarContainer>
   )
 }
