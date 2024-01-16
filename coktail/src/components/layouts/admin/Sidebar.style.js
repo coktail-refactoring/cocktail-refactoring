@@ -1,29 +1,40 @@
 import styled from 'styled-components'
 
+//사이드바 전체 컨테이너
 export const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
+  width: 20%;
   color: rgba(84, 84, 84, 1);
   background-color: #ffeded;
 
+  //sidebar 로고컨테이너
+  .logoBox {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem;
+    cursor: pointer;
+    height: auto;
+  }
+
+  //sidebar 글씨
   .sideText {
-    margin-left: 1rem;
+    margin-left: 0.5rem;
     font-size: 19px;
   }
-`
 
-export const LogoContainer = styled.div`
-  padding: 1.5rem;
-  cursor: pointer;
-  height: auto;
+  //sidebar 로그아웃, 나가기 메뉴
+  .bottomMenuItem {
+    display: flex;
+    justify-content: center;
+  }
 `
-
+//메뉴 아이템
 export const MenuItem = styled.div`
   display: flex;
-  align-items: center;
-  position: relative;
+  justify-content: center;
   padding: 1.2rem;
   cursor: pointer;
 
@@ -32,20 +43,4 @@ export const MenuItem = styled.div`
   &:hover {
     background-color: white;
   }
-
-  & > div {
-    width: 20%;
-    text-align: center;
-  }
-  & > span {
-    width: 80%;
-  }
-`
-
-export const BottomItemContainer = styled.div`
-  display: flex;
-`
-
-export const MenuICon = styled.div`
-  /* margin-right: 5px; */
 `

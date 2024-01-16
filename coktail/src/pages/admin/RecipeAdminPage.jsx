@@ -74,13 +74,13 @@ const RecipeAdminPage = () => {
   return (
     <Styled.Container>
       <Title text="DIY 레시피 관리" />
-      <Styled.SearchContainer>
+      <div className="searchContainer">
         <Search
           value={searchQuery}
           onChange={handleSearchChange}
           onSearchClickHandler={getRecipeList}
         />
-      </Styled.SearchContainer>
+      </div>
       <Table
         headers={headerRecipeData}
         datas={currentData}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { api } from '@/utils/api'
 import toast, { Toaster } from 'react-hot-toast'
 
@@ -81,21 +81,24 @@ const ProductAdminPage = () => {
     navigate(`/admin/cocktails/edit?id=${id}`)
   }
 
+  //등록버튼
+  function RegisterHandleClick() {
+    navigate('/admin/cocktails/register')
+  }
+
   return (
     <Styled.Container>
       <Title text="칵테일 관리" />
-      <Styled.SearchContainer>
+      <div className="searchContainer">
         <Search
           value={searchQuery}
           onChange={handleSearchChange}
           onSearchClickHandler={getProductList}
         />
-      </Styled.SearchContainer>
-      <Link to="/admin/cocktails/register">
-        <Styled.ButtonContainer>
-          <Button text="칵테일 등록 " />
-        </Styled.ButtonContainer>
-      </Link>
+      </div>
+      <div className="registerBtn" onClick={RegisterHandleClick}>
+        <Button text="칵테일 등록 " />
+      </div>
       <Table
         headers={headerProductData}
         datas={currentData}

@@ -47,17 +47,16 @@ export const IconWrapper = styled.div`
   cursor: pointer;
 `
 
-//버튼
+//Button.jsx
 export const ButtonStyled = styled.button`
-  font-size: 1rem;
   display: flex;
   justify-content: center;
-  width: 6rem;
-  color: #000000;
+  align-items: center;
+  width: 10%;
+  height: 45px;
   background-color: #ffc5c5;
-  border-radius: 2rem;
+  border-radius: 10px;
   font-weight: bold;
-  display: flex;
   cursor: pointer;
 `
 
