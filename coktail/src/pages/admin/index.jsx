@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import mainBannerLeft from '@/assets/coktail_main_left_img.png'
-import mainBannerRight from '@/assets/coktail_main_right_img.png'
+import mainBannerLeft from '@/assets/img/coktail_main_left_img.png'
+import mainBannerRight from '@/assets/img/coktail_main_right_img.png'
 import * as Styled from './Admin.Style'
 
 export default function AdminPage() {
