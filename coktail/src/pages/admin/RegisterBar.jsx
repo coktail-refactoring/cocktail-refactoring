@@ -79,6 +79,13 @@ export default function RegisterBar() {
     navigate(-1)
   }
 
+  function coordinateInputClick() {
+    toast('상세 주소를 입력후 주소좌표검색 버튼을 클릭해주세요!', {
+      duration: 2500,
+      icon: '😜',
+    })
+  }
+
   return (
     <Styled.ProductContainer onSubmit={submitHandler}>
       <Title text="Bar 등록" />
@@ -108,10 +115,22 @@ export default function RegisterBar() {
             onClick={addressToCoordinate}
             type="button"
           >
-            주소로 좌표 검색
+            주소 좌표 검색
           </button>
-          <input type="text" placeholder="x" value={coordinate.x} readOnly />
-          <input type="text" placeholder="y" value={coordinate.y} readOnly />
+          <input
+            onClick={coordinateInputClick}
+            type="text"
+            placeholder="x"
+            value={coordinate.x}
+            readOnly
+          />
+          <input
+            onClick={coordinateInputClick}
+            type="text"
+            placeholder="y"
+            value={coordinate.y}
+            readOnly
+          />
           <input
             type="text"
             setTel={(e) => setTel(e)}
