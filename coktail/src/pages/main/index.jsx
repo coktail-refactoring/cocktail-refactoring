@@ -15,9 +15,9 @@ import 'slick-carousel/slick/slick-theme.css'
 import Suggest from './Suggest'
 
 // imgs
-import mainBannerLeft from '@/assets/coktail_main_left_img.png'
-import mainBannerRight from '@/assets/coktail_main_right_img.png'
-import groupImg from '@/assets/group.png'
+import mainBannerLeft from '@/assets/img/coktail_main_left_img.png'
+import mainBannerRight from '@/assets/img/coktail_main_right_img.png'
+import groupImg from '@/assets/img/group.png'
 
 //icons
 import { FaStar } from 'react-icons/fa'

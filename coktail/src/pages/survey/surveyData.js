@@ -1,8 +1,8 @@
-import surveyImg1 from '@/assets/surveyImg/surveyImg1.png'
-import surveyImg2 from '@/assets/surveyImg/surveyImg2.png'
-import surveyImg3 from '@/assets/surveyImg/surveyImg3.png'
-import surveyImg4 from '@/assets/surveyImg/surveyImg4.png'
-import surveyImg5 from '@/assets/surveyImg/surveyImg5.png'
+import surveyImg1 from '@/assets/img/surveyImg1.png'
+import surveyImg2 from '@/assets/img/surveyImg2.png'
+import surveyImg3 from '@/assets/img/surveyImg3.png'
+import surveyImg4 from '@/assets/img/surveyImg4.png'
+import surveyImg5 from '@/assets/img/surveyImg5.png'
 
 const questions = [
   {

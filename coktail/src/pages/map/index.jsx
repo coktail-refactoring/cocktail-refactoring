@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
 import * as Styled from './style'
 
-import barImg from '@/assets/bar.png'
-import markerImg from '@/assets/marker2shadow.png'
+import barImg from '@/assets/img/bar.png'
+import markerImg from '@/assets/img/marker2shadow.png'
 import HamburgerIcon from '@/components/icons/HamburgerIcon'
 import { api } from '@/utils/api'
 import { useDebounce } from '@/hooks/useDebounce'
