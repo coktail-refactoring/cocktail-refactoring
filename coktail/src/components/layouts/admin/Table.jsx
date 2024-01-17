@@ -15,15 +15,14 @@ const Table = ({
   imgURL,
 }) => {
   return (
-    <Styled.StyledTable>
-      <Styled.StyledThead>
+    <Styled.Table>
+      <thead>
         <tr>
           {headers.map((headers, index) => (
-            <Styled.StyledTh key={index + headers}>{headers}</Styled.StyledTh>
+            <Styled.Th key={index + headers}>{headers}</Styled.Th>
           ))}
         </tr>
-      </Styled.StyledThead>
-
+      </thead>
       <Styled.Tbody>
         {datas && datas.length > 0 ? (
           datas.map((data, datasIndex) => (
@@ -41,8 +40,8 @@ const Table = ({
               )}
 
               {data.infos.map((info, index) => (
-                <td key={index}>
-                  <Styled.TableDiv>{info}</Styled.TableDiv>
+                <td className="tdFirst" key={index}>
+                  {info}
                 </td>
               ))}
 
@@ -85,7 +84,7 @@ const Table = ({
           </tr>
         )}
       </Styled.Tbody>
-    </Styled.StyledTable>
+    </Styled.Table>
   )
 }
 
