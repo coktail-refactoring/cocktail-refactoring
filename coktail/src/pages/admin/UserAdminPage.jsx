@@ -68,7 +68,7 @@ const UserAdminPage = () => {
   const toggleHandler = async (id) => {
     try {
       await api.put(`/users/${id}/permissions`)
-      toast('권한이 변경되었습니다.', { duration: 800, icon: '😤' })
+      toast('권한이 변경되었습니다.', { duration: 1500, icon: '😤' })
     } catch (error) {
       console.error('에러 발생', error)
     }
@@ -79,7 +79,7 @@ const UserAdminPage = () => {
     try {
       await api.delete(`/users/${id}/delete`)
       setIsChangeCheck(!isChangeCheck)
-      toast('유저가 삭제되었습니다.', { duration: 800, icon: '🫡' })
+      toast('유저가 삭제되었습니다.', { duration: 1500, icon: '🫡' })
     } catch (error) {
       console.error('에러발생', error)
     }
@@ -88,13 +88,13 @@ const UserAdminPage = () => {
   return (
     <Styled.Container>
       <Title text="유저 관리" />
-      <Styled.SearchContainer>
+      <div className="searchContainer">
         <Search
           value={searchQuery}
           onChange={handleSearchChange}
           onSearchClickHandler={getUserList}
         />
-      </Styled.SearchContainer>
+      </div>
       <Table
         headers={headerUserData}
         datas={currentData}

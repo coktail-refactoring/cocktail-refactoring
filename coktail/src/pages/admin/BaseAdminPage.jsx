@@ -94,17 +94,20 @@ const ProductAdminPage = () => {
     navigate(`/admin/bases/edit?id=${id}`)
   }
 
+  //등록버튼
+  function RegisterHandleClick() {
+    navigate('/admin/bases/register')
+  }
+
   return (
     <Styled.Container>
       <Title text="베이스 관리" />
-      <Styled.SearchContainer>
+      <div className="searchContainer">
         <Search value={search} onChange={(e) => setSearch(e.target.value)} />
-      </Styled.SearchContainer>
-      <Link to="/admin/bases/register">
-        <Styled.ButtonContainer>
-          <Button text="베이스 등록 " />
-        </Styled.ButtonContainer>
-      </Link>
+      </div>
+      <div className="registerBtn" onClick={RegisterHandleClick}>
+        <Button text="베이스 등록" />
+      </div>
       <Table
         headers={headerBaseData}
         datas={filter}

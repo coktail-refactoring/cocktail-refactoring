@@ -1,18 +1,17 @@
 import Sidebar from './Sidebar'
-import { Outlet, useLocation} from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import * as Styled from './Main.style'
-import LoginCheck from '@/utils/LoginCheck';
-
+import LoginCheck from '@/utils/LoginCheck'
 
 export default function Layout() {
-  const {pathname} = useLocation();
-  LoginCheck(pathname);
+  const { pathname } = useLocation()
+  LoginCheck(pathname)
   return (
-    <Styled.Container>
+    <Styled.MainContainer>
       <Sidebar />
-      <Styled.Main>
+      <div className="main">
         <Outlet />
-      </Styled.Main>
-    </Styled.Container>
+      </div>
+    </Styled.MainContainer>
   )
 }

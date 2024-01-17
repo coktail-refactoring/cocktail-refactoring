@@ -89,21 +89,24 @@ const ReviewAdminPage = () => {
     navigate(`/admin/bars/edit?id=${id}`)
   }
 
+  //등록버튼
+  function RegisterHandleClick() {
+    navigate('/admin/bars/register')
+  }
+
   return (
     <Styled.Container>
       <Title text="Bar 관리" />
-      <Styled.SearchContainer>
+      <div className="searchContainer">
         <Search
           value={searchQuery}
           onChange={handleSearchChange}
           onSearchClickHandler={getBarList}
         />
-      </Styled.SearchContainer>
-      <Link to="/admin/bars/register">
-        <Styled.ButtonContainer>
-          <Button text="Bar 등록 " />
-        </Styled.ButtonContainer>
-      </Link>
+      </div>
+      <div className="registerBtn" onClick={RegisterHandleClick}>
+        <Button text="Bar 등록 " />
+      </div>
       <Table
         headers={headerBarData}
         datas={currentData}

@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import * as Styled from './Sidebar.style'
+import { isUserStore } from '@/store/isTokenStore'
 import { api } from '@/utils/api'
+
+//styled component
+import * as Styled from './Sidebar.style'
 
 //icons
 import PersonIcon from '@components/icons/PersonIcon'
@@ -12,8 +15,6 @@ import BarIcon from '@components/icons/BarIcon'
 import LogoutIcon from '@components/icons/LogoutIcon'
 import AdminIcon from '@components/icons/AdminIcon'
 import BaseIcon from '@components/icons/BaseIcon'
-
-import { isUserStore } from '@/store/isTokenStore'
 
 const menuItems = [
   {
@@ -57,6 +58,12 @@ export default function Sidebar() {
     setActiveItem(index)
   }
 
+  //어드민 메인페이지 이동
+  function GotoAdminMainPage() {
+    navigate('/admin')
+  }
+
+  //로그아웃 -> 메인 페이지 이동
   const kakaoLogout = async () => {
     try {
       const logout = await api.delete('/users/logout')
@@ -71,6 +78,7 @@ export default function Sidebar() {
     }
   }
 
+  //메인페이지로 이동
   function GotoHome() {
     navigate('/')
   }
@@ -78,37 +86,31 @@ export default function Sidebar() {
   return (
     <Styled.SidebarContainer>
       <div>
-        <Styled.LogoContainer>
-          <Link to="/admin">
-            <AdminIcon className="logo" />
-          </Link>
-        </Styled.LogoContainer>
+        <div onClick={GotoAdminMainPage} className="logoBox">
+          <AdminIcon className="logo" />
+        </div>
         {menuItems.map((item, index) => (
           <Link to={item.link} key={index}>
             <Styled.MenuItem
               $isActive={index === activeItem}
               onClick={() => handleItemClick(index)}
             >
-              <Styled.MenuICon>{item.icon}</Styled.MenuICon>
+              <span>{item.icon}</span>
               <span className="sideText">{item.text}</span>
             </Styled.MenuItem>
           </Link>
         ))}
       </div>
-      <Styled.BottomItemContainer>
+      <div className="bottomMenuItem">
         <Styled.MenuItem onClick={GotoHome}>
-          <Styled.MenuICon>
-            <LogoutIcon />
-          </Styled.MenuICon>
+          <LogoutIcon />
           <span className="sideText">나가기</span>
         </Styled.MenuItem>
         <Styled.MenuItem onClick={() => kakaoLogout()}>
-          <Styled.MenuICon>
-            <LogoutIcon />
-          </Styled.MenuICon>
+          <LogoutIcon />
           <span className="sideText">로그아웃</span>
         </Styled.MenuItem>
-      </Styled.BottomItemContainer>
+      </div>
     </Styled.SidebarContainer>
   )
 }

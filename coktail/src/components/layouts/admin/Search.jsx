@@ -3,7 +3,8 @@ import AdminSearchIcon from '@components/icons/AdminSearchIcon'
 
 const Search = ({ value, onChange, onSearchClickHandler }) => (
   <Styled.SearchWrapper>
-    <Styled.SearchBox
+    <input
+      className="searchBox"
       type="text"
       value={value}
       onChange={onChange}
@@ -12,10 +13,10 @@ const Search = ({ value, onChange, onSearchClickHandler }) => (
           onSearchClickHandler()
         }
       }}
-    />
-    <Styled.IconWrapper>
+    ></input>
+    <div className="IconWrapper">
       <AdminSearchIcon onClick={onSearchClickHandler} />
-    </Styled.IconWrapper>
+    </div>
   </Styled.SearchWrapper>
 )
 

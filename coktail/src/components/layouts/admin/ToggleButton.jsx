@@ -14,7 +14,7 @@ const ToggleButton = ({ isWrite, toggleHandler, value }) => {
   return (
     <Styled.ToggleContainer $isToggled={isToggled} onClick={toggle}>
       <Styled.OnLabel $isToggled={isToggled}>ON</Styled.OnLabel>
-      <Styled.ToggleCircle />
+      <div className="toggleCircle"></div>
       <Styled.OffLabel $isToggled={!isToggled}>OFF</Styled.OffLabel>
     </Styled.ToggleContainer>
   )
