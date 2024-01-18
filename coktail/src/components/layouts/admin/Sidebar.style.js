@@ -5,10 +5,11 @@ export const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
-  width: 20%;
+  width: 23%;
   color: rgba(84, 84, 84, 1);
   background-color: #ffeded;
+  height: 100vh;
+  transition: transform 0.2s ease;
 
   //sidebar 로고컨테이너
   .logoBox {
