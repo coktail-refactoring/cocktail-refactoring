@@ -102,11 +102,9 @@ export default function EditProduct() {
   }
 
   return (
-    //form
     <Styled.ProductContainer onSubmit={submitHandler}>
       <Title text="칵테일 수정" />
-      {/* 칵테일 위 컨테이너 */}
-      <Styled.ProductContentContainer>
+      <Styled.CocktailContainer>
         <div className="ImgContainer">
           {images.length && (
             <ImageUpload
@@ -116,45 +114,42 @@ export default function EditProduct() {
             />
           )}
         </div>
+        <div className="NameContainer">
+          <Naming
+            className="name"
+            setName={setName}
+            setBase={setBase}
+            setTagArr={setTags}
+            defaultName={name}
+            defaultBase={base}
+            defaultTagArr={defaultArr}
+          />
+        </div>
 
-        <Styled.InpStarContainer>
-          <div className="NameContainer">
-            <Naming
-              className="name"
-              setName={setName}
-              setBase={setBase}
-              setTagArr={setTags}
-              defaultName={name}
-              defaultBase={base}
-              defaultTagArr={defaultArr}
-            />
+        <Styled.StarContainer>
+          <div className="ratingWrap">
+            <div className="rating">
+              <div>도수</div>
+              <StarRating setAbv={setAbv} defaultValue={abv} />
+            </div>
+            <div className="rating">
+              <div>단맛</div>
+              <StarRating setSweet={setSweet} defaultValue={sweet} />
+            </div>
           </div>
 
-          <Styled.StarContainer>
-            <div className="ratingWrap">
-              <div className="rating">
-                <div>도수</div>
-                <StarRating setAbv={setAbv} defaultValue={abv} />
-              </div>
-              <div className="rating">
-                <div>단맛</div>
-                <StarRating setSweet={setSweet} defaultValue={sweet} />
-              </div>
+          <div className="ratingWrap">
+            <div className="rating">
+              <div>신맛</div>
+              <StarRating setSour={setSour} defaultValue={sour} />
             </div>
-
-            <div className="ratingWrap">
-              <div className="rating">
-                <div>신맛</div>
-                <StarRating setSour={setSour} defaultValue={sour} />
-              </div>
-              <div className="rating">
-                <div>쓴맛</div>
-                <StarRating setBitter={setBitter} defaultValue={bitter} />
-              </div>
+            <div className="rating">
+              <div>쓴맛</div>
+              <StarRating setBitter={setBitter} defaultValue={bitter} />
             </div>
-          </Styled.StarContainer>
-        </Styled.InpStarContainer>
-      </Styled.ProductContentContainer>
+          </div>
+        </Styled.StarContainer>
+      </Styled.CocktailContainer>
       <Styled.TextAreaContainer>
         <TitleAndTextarea
           title="소개글"
