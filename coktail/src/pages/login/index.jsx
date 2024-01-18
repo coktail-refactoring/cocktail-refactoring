@@ -9,11 +9,11 @@ export default function LoginPage() {
 
   const kakaoLoginOn = () => {
     try {
-      document.location.href =
-        'http://kdt-sw-7-team07.elicecoding.com/api/v1/auth/kakao/redirectLogin'
-
       // document.location.href =
-      //   'http://localhost:5173/api/v1/auth/kakao/redirectLogin'
+      //   'http://kdt-sw-7-team07.elicecoding.com/api/v1/auth/kakao/redirectLogin'
+
+      document.location.href =
+        'http://localhost:5173/api/v1/auth/kakao/redirectLogin'
     } catch (error) {
       console.error(error)
     }
