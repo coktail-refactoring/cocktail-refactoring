@@ -141,7 +141,8 @@ export const router = createBrowserRouter([
                 element: <MyRecipe />,
               },
               {
-                path: ':id',
+                // path: ':id',
+                path : 'register',
                 element: <ModifyMyRecipe />,
               },
             ],

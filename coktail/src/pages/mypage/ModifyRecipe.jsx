@@ -1,19 +1,21 @@
-import styled from 'styled-components'
+import * as Styled from '@/pages/recipes/recipeRegister.style'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '@/utils/api'
-import Spacing from '@/utils/Spacing'
-import { paddingBottom } from '@/assets/styleVariables'
 
 /* Components */
-import Naming from '@/components/recipeUpload/Naming'
-import RecipeStep from '@/components/recipeUpload/RecipeStep'
+import Title from '@/components/title'
 import ImageUpload from '@/components/recipeUpload/ImageUpload'
 import StarRating from '@/components/recipeUpload/StarRating'
-import Title from '@/components/title'
-import TitleAndTextarea from '@/components/recipeUpload/TitleAndTextarea'
+
+/* Icons */
+import AddBtnIcon from '@/components/icons/AddBtnIcon'
+import CloseIcon from '@/components/icons/CloseIcon'
 
 export default function ModifyRecipe() {
+  const [baseData, setBaseData] = useState([])
+  const [tag, setTag] = useState('')
+  
   const [name, setName] = useState('')
   const [base, setBase] = useState('')
   const [tags, setTags] = useState([])
@@ -52,6 +54,49 @@ export default function ModifyRecipe() {
     setBitter(data.bitter)
     setDescription(data.description)
     setIngredient(data.ingredient)
+  }
+
+   //baseApi
+   const getBaseData = async () => {
+    const response = await api.get('/bases')
+    const data = response.data.bases
+    setBaseData(data)
+  }
+
+  useEffect(() => {
+    getBaseData()
+  }, [])
+
+  //tagHandler
+  function submitTagHandler(e) {
+    e.preventDefault()
+    const cleanedTag = tag.replace(/[^a-zA-Z가-힣]/g, '')
+    if (cleanedTag.trim() !== '') {
+      setTags([...tags, cleanedTag])
+      setTag('')
+    }
+  }
+
+  function deleteHandler(index) {
+    const newArr = [...tags]
+    newArr.splice(index, 1)
+    setTags(newArr)
+  }
+
+  //recipe Step
+  function addStepHandler(e) {
+    e.preventDefault()
+    const newStepArr = { image: '', content: '' }
+    setRecipeArr([...recipeArr, newStepArr])
+  }
+
+  function removeStepHandler(e, index) {
+    e.preventDefault()
+    setRecipeArr((cur) => {
+      const newStepArr = [...cur]
+      newStepArr.splice(index, 1)
+      return newStepArr
+    })
   }
 
   const submitHandler = async (e) => {
@@ -109,7 +154,133 @@ export default function ModifyRecipe() {
 
   return (
     <>
-      <Title>DIY레시피 수정</Title>
+    <Title>DIY레시피 수정</Title>
+      <Styled.Container>
+        <Styled.RecipeForm onSubmit={submitHandler}>
+          <div className="gap10">
+            <Styled.InputBox>
+              <Styled.Input
+                type="text"
+                placeholder="칵테일 이름"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </Styled.InputBox>
+
+            <Styled.Select
+              value={base}
+              onChange={(e) => setBase(e.target.value)}
+            >
+              {baseData.map((i, index) => (
+                <option key={index + i} value={i._id}>
+                  {i.name}
+                </option>
+              ))}
+            </Styled.Select>
+
+            <Styled.InputBox>
+              <Styled.Input
+                type="text"
+                value={tag}
+                onChange={(e) => setTag(e.target.value)}
+                placeholder="해시태그를 입력해주세요"
+              />
+              <Styled.AddTagBtn onClick={submitTagHandler}>
+                <AddBtnIcon width={15} />
+              </Styled.AddTagBtn>
+            </Styled.InputBox>
+            <Styled.TagsList>
+              {tags.map((item, index) => (
+                <li key={item + index} className="tagItem">
+                  <div>
+                    {'#' + item}
+                    <button className="closeBtn" onClick={deleteHandler}>
+                      <CloseIcon width={10} height={10} fill={'#000000'} />
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </Styled.TagsList>
+          </div>
+
+          <div className="imgFileWrap">
+            <ImageUpload setImgs={setImages} />
+          </div>
+
+          <Styled.RatingBox>
+            <div className="ratingWrap">
+              <div>도수</div>
+              <StarRating setRating={(r) => setAbv(r)} />
+            </div>
+            <div className="ratingWrap">
+              <div>단맛</div>
+              <StarRating setRating={(r) => setSweet(r)} />
+            </div>
+            <div className="ratingWrap">
+              <div>신맛</div>
+              <StarRating setRating={(r) => setSour(r)} />
+            </div>
+            <div className="ratingWrap">
+              <div>쓴맛</div>
+              <StarRating setRating={(r) => setBitter(r)} />
+            </div>
+          </Styled.RatingBox>
+
+          <Styled.TitleAndTextArea>
+            <Styled.TitleBadge>소개글</Styled.TitleBadge>
+            <Styled.Textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="내용을 입력해주세요 :)"
+              required
+            ></Styled.Textarea>
+          </Styled.TitleAndTextArea>
+
+          <Styled.TitleAndTextArea>
+            <Styled.TitleBadge>재료</Styled.TitleBadge>
+            <Styled.Textarea
+              value={ingredient}
+              onChange={(e) => setIngredient(e.target.value)}
+              placeholder="재료를 입력해주세요 :)"
+              required
+            ></Styled.Textarea>
+          </Styled.TitleAndTextArea>
+
+          <Styled.Recipe>
+            <Styled.TitleBadge>레시피</Styled.TitleBadge>
+            {recipeArr.map((item, index) => (
+              <Styled.Step key={index + item}>
+                <div className='txtBox'>
+                  <Styled.Textarea
+                    placeholder={`${index + 1}. 설명을 입력해 주세요`}
+                  />
+                  <Styled.RemoveRecipeBtn onClick={removeStepHandler}>
+                    <CloseIcon width={17} fill={'#797979'} />
+                  </Styled.RemoveRecipeBtn>
+                </div>
+                <div className="imgBox">``
+                  <ImageUpload />
+                </div>
+              </Styled.Step>
+            ))}
+            <div className="btnBox">
+              <Styled.AddRecipeBtn onClick={addStepHandler}>
+                + 추가
+              </Styled.AddRecipeBtn>
+            </div>
+          </Styled.Recipe>
+
+          <Styled.ButtonGroup>
+            <button className="btn cancelBtn" onClick={cancelHandler}>
+              취소
+            </button>
+            <button className="btn submitBtn" type="submit">
+              등록하기
+            </button>
+          </Styled.ButtonGroup>
+        </Styled.RecipeForm>
+      </Styled.Container>
+      {/* <Title>DIY레시피 수정</Title>
       <Container>
         <RecipeForm onSubmit={submitHandler}>
           <Naming
@@ -177,53 +348,53 @@ export default function ModifyRecipe() {
           </ButtonGroup>
         </RecipeForm>
         <Spacing size={paddingBottom} />
-      </Container>
+      </Container> */}
     </>
   )
 }
 
-const Container = styled.div`
-  padding: 0 2em;
-`
+// const Container = styled.div`
+//   padding: 0 2em;
+// `
 
-const RecipeForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  .imgFileWrap {
-    height: 248px;
-  }
-`
-const RatingBox = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 22px;
-  .ratingWrap {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-`
+// const RecipeForm = styled.form`
+//   display: flex;
+//   flex-direction: column;
+//   gap: 20px;
+//   .imgFileWrap {
+//     height: 248px;
+//   }
+// `
+// const RatingBox = styled.div`
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: space-evenly;
+//   gap: 22px;
+//   .ratingWrap {
+//     display: flex;
+//     align-items: center;
+//     gap: 1rem;
+//   }
+// `
 
-const ButtonGroup = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  .btn {
-    border: none;
-    box-shadow: none;
-    border-radius: 20rem;
-    padding: 0;
-    overflow: visible;
-    cursor: pointer;
-    width: 100px;
-    height: 36px;
-  }
-  .cancelBtn {
-    background-color: #d5d5d5;
-  }
-  .submitBtn {
-    background-color: #b0d96d;
-  }
-`
+// const ButtonGroup = styled.div`
+//   display: flex;
+//   justify-content: flex-end;
+//   gap: 10px;
+//   .btn {
+//     border: none;
+//     box-shadow: none;
+//     border-radius: 20rem;
+//     padding: 0;
+//     overflow: visible;
+//     cursor: pointer;
+//     width: 100px;
+//     height: 36px;
+//   }
+//   .cancelBtn {
+//     background-color: #d5d5d5;
+//   }
+//   .submitBtn {
+//     background-color: #b0d96d;
+//   }
+// `
