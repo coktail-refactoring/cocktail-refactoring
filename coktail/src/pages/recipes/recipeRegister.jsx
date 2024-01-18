@@ -12,7 +12,6 @@ import StarRating from '@/components/recipeUpload/StarRating'
 import AddBtnIcon from '@/components/icons/AddBtnIcon'
 import CloseIcon from '@/components/icons/CloseIcon'
 
-
 export default function RecipeRegister() {
   const [baseData, setBaseData] = useState([])
   const [tag, setTag] = useState('')
@@ -34,7 +33,6 @@ export default function RecipeRegister() {
     },
   ])
 
-  
   //baseApi
   const getBaseData = async () => {
     const response = await api.get('/bases')
@@ -67,6 +65,15 @@ export default function RecipeRegister() {
     e.preventDefault()
     const newStepArr = { image: '', content: '' }
     setRecipeArr([...recipeArr, newStepArr])
+  }
+
+  function removeStepHandler(e, index) {
+    e.preventDefault()
+    setRecipeArr((cur) => {
+      const newStepArr = [...cur]
+      newStepArr.splice(index, 1)
+      return newStepArr
+    })
   }
 
   //form Data
@@ -193,7 +200,7 @@ export default function RecipeRegister() {
               required
             ></Styled.Textarea>
           </Styled.TitleAndTextArea>
-          
+
           <Styled.TitleAndTextArea>
             <Styled.TitleBadge>재료</Styled.TitleBadge>
             <Styled.Textarea
@@ -207,15 +214,24 @@ export default function RecipeRegister() {
           <Styled.Recipe>
             <Styled.TitleBadge>레시피</Styled.TitleBadge>
             {recipeArr.map((item, index) => (
-              <Styled.Step key={index+item}>
-                <Styled.Textarea placeholder={`${index + 1}. 설명을 입력해 주세요`} />
+              <Styled.Step key={index + item}>
+                <div className='txtBox'>
+                  <Styled.Textarea
+                    placeholder={`${index + 1}. 설명을 입력해 주세요`}
+                  />
+                  <Styled.RemoveRecipeBtn onClick={removeStepHandler}>
+                    <CloseIcon width={17} fill={'#797979'} />
+                  </Styled.RemoveRecipeBtn>
+                </div>
                 <div className="imgBox">
                   <ImageUpload />
                 </div>
               </Styled.Step>
             ))}
             <div className="btnBox">
-              <Styled.AddRecipeBtn onClick={addStepHandler}>+ 추가</Styled.AddRecipeBtn>
+              <Styled.AddRecipeBtn onClick={addStepHandler}>
+                + 추가
+              </Styled.AddRecipeBtn>
             </div>
           </Styled.Recipe>
 

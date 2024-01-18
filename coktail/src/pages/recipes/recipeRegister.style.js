@@ -104,6 +104,7 @@ export const Textarea = styled.textarea`
   resize: none;
   border: 2px solid #d5d5d5;
   border-radius: .6rem;
+  padding: 0 8px;
   margin-top: 8px;
   white-space: pre-wrap;
   word-break: break-all;
@@ -120,10 +121,24 @@ export const Recipe = styled.div`
   }
 `
 export const Step = styled.div`
+  .txtBox {
+    display: flex;
+    gap: 10px;
+  }
+
   .imgBox {
     margin-top: 8px;
     height: 204px;
   }
+
+  + div {
+    margin-top: 20px;
+  }
+`
+export const RemoveRecipeBtn = styled.button`
+  background-color: ${primaryGray};
+  margin-top: 8px;
+  border-radius: 1rem;
 `
 
 export const AddRecipeBtn = styled.button`
