@@ -3,12 +3,11 @@ import styled from 'styled-components'
 //index.jsx
 export const MainContainer = styled.div`
   display: flex;
+  flex-grow: 1;
 
   .main {
     width: 100%;
     height: 100vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
   }
 `
 

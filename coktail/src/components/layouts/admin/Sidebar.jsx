@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { isUserStore } from '@/store/isTokenStore'
 import { api } from '@/utils/api'
@@ -53,6 +53,21 @@ export default function Sidebar() {
   const navigate = useNavigate()
   const [activeItem, setActiveItem] = useState(null)
   const { setUser, setIsLogin } = isUserStore((state) => state)
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  const sidebarTransform = `translateY(${scrollY}px)`
 
   const handleItemClick = (index) => {
     setActiveItem(index)
@@ -84,7 +99,7 @@ export default function Sidebar() {
   }
 
   return (
-    <Styled.SidebarContainer>
+    <Styled.SidebarContainer style={{ transform: sidebarTransform }}>
       <div>
         <div onClick={GotoAdminMainPage} className="logoBox">
           <AdminIcon className="logo" />
