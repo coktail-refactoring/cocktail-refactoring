@@ -31,8 +31,8 @@ export default function ModifyRecipe() {
   // console.log(images)
 
   //디폴트값 담는곳
-  const [defaultArr, setDefaultArr] = useState([])
-  const [defaultRecipe, setDefaultRecipe] = useState([])
+  // const [defaultArr, setDefaultArr] = useState([])
+  // const [defaultRecipe, setDefaultRecipe] = useState([])
 
   const { id } = useParams()
 
@@ -41,8 +41,8 @@ export default function ModifyRecipe() {
     const response = await api.get(`/diy-recipes/${id}`)
     const data = response.data
     //다른값으로 저장후 전달해야 무한렌더링 막음.
-    setDefaultArr(data.tags)
-    setDefaultRecipe(data.recipes)
+    // setDefaultArr(data.tags)
+    // setDefaultRecipe(data.recipes)
 
     setName(data.name)
     setBase(data.base._id)
@@ -54,8 +54,11 @@ export default function ModifyRecipe() {
     setBitter(data.bitter)
     setDescription(data.description)
     setIngredient(data.ingredient)
+    setRecipeArr(data.recipes)
+    console.log(data)
   }
 
+  console.log(recipeArr)
    //baseApi
    const getBaseData = async () => {
     const response = await api.get('/bases')
@@ -99,6 +102,19 @@ export default function ModifyRecipe() {
     })
   }
 
+  function txtInput(e, index) {
+    const newRecipeArr = [...recipeArr]
+    newRecipeArr[index].content = e.target.value
+    setRecipeArr(newRecipeArr);
+  }
+
+  function setImage(imgs, index) {
+    const newRecipeArr = [...recipeArr];
+    newRecipeArr[index].image = imgs;
+    setRecipeArr(newRecipeArr);
+  }
+
+//modifyApi
   const submitHandler = async (e) => {
     e.preventDefault()
 
@@ -204,25 +220,25 @@ export default function ModifyRecipe() {
           </div>
 
           <div className="imgFileWrap">
-            <ImageUpload setImgs={setImages} />
+            <ImageUpload setImgs={setImages} defaultValue={images}/>
           </div>
 
           <Styled.RatingBox>
             <div className="ratingWrap">
               <div>도수</div>
-              <StarRating setRating={(r) => setAbv(r)} />
+              <StarRating defaultValue={abv} setRating={(r) => setAbv(r)} />
             </div>
             <div className="ratingWrap">
               <div>단맛</div>
-              <StarRating setRating={(r) => setSweet(r)} />
+              <StarRating defaultValue={sweet} setRating={(r) => setSweet(r)} />
             </div>
             <div className="ratingWrap">
               <div>신맛</div>
-              <StarRating setRating={(r) => setSour(r)} />
+              <StarRating defaultValue={sour} setRating={(r) => setSour(r)} />
             </div>
             <div className="ratingWrap">
               <div>쓴맛</div>
-              <StarRating setRating={(r) => setBitter(r)} />
+              <StarRating defaultValue={bitter} setRating={(r) => setBitter(r)} />
             </div>
           </Styled.RatingBox>
 
@@ -248,18 +264,20 @@ export default function ModifyRecipe() {
 
           <Styled.Recipe>
             <Styled.TitleBadge>레시피</Styled.TitleBadge>
-            {recipeArr.map((item, index) => (
+            {recipeArr && recipeArr.map((item, index) => (
               <Styled.Step key={index + item}>
                 <div className='txtBox'>
                   <Styled.Textarea
+                    value={recipeArr[index].content}
+                    onChange={(e) => txtInput(e, index)}
                     placeholder={`${index + 1}. 설명을 입력해 주세요`}
                   />
                   <Styled.RemoveRecipeBtn onClick={removeStepHandler}>
                     <CloseIcon width={17} fill={'#797979'} />
                   </Styled.RemoveRecipeBtn>
                 </div>
-                <div className="imgBox">``
-                  <ImageUpload />
+                <div className="imgBox">
+                  <ImageUpload setImgs={(imgs) => {setImage(imgs, index)}} defaultValue={recipeArr[index].image}/>
                 </div>
               </Styled.Step>
             ))}
@@ -280,121 +298,6 @@ export default function ModifyRecipe() {
           </Styled.ButtonGroup>
         </Styled.RecipeForm>
       </Styled.Container>
-      {/* <Title>DIY레시피 수정</Title>
-      <Container>
-        <RecipeForm onSubmit={submitHandler}>
-          <Naming
-            setName={setName}
-            setBase={setBase}
-            setTagArr={setTags}
-            defaultName={name}
-            defaultBase={base}
-            defaultTagArr={defaultArr}
-          />
-          <div className="imgFileWrap">
-            {images.length > 0 && (
-              <ImageUpload
-                setImgs={setModifyImages}
-                defaultValue={images}
-              />
-            )}
-          </div>
-
-          <RatingBox>
-            <div className="ratingWrap">
-              <div>도수</div>
-              <StarRating setRating={(r) => setAbv(r)} defaultValue={abv} />
-            </div>
-            <div className="ratingWrap">
-              <div>단맛</div>
-              <StarRating setRating={(r) => setSweet(r)} defaultValue={sweet} />
-            </div>
-            <div className="ratingWrap">
-              <div>신맛</div>
-              <StarRating setRating={(r) => setSour(r)} defaultValue={sour} />
-            </div>
-            <div className="ratingWrap">
-              <div>쓴맛</div>
-              <StarRating
-                setRating={(r) => setBitter(r)}
-                defaultValue={bitter}
-              />
-            </div>
-          </RatingBox>
-          <TitleAndTextarea
-            title="소개글"
-            setContent={setDescription}
-            defaultValue={description}
-          />
-          <TitleAndTextarea
-            title="재료"
-            setContent={setIngredient}
-            defaultValue={ingredient}
-          />
-          {defaultRecipe.length && (
-            <RecipeStep
-              setRecipes={setRecipeArr}
-              defaultRecipe={defaultRecipe}
-            />
-          )}
-
-          <ButtonGroup>
-            <button className="btn cancelBtn" onClick={cancelHandler}>
-              취소
-            </button>
-            <button className="btn submitBtn" type="submit">
-              수정하기
-            </button>
-          </ButtonGroup>
-        </RecipeForm>
-        <Spacing size={paddingBottom} />
-      </Container> */}
     </>
   )
 }
-
-// const Container = styled.div`
-//   padding: 0 2em;
-// `
-
-// const RecipeForm = styled.form`
-//   display: flex;
-//   flex-direction: column;
-//   gap: 20px;
-//   .imgFileWrap {
-//     height: 248px;
-//   }
-// `
-// const RatingBox = styled.div`
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: space-evenly;
-//   gap: 22px;
-//   .ratingWrap {
-//     display: flex;
-//     align-items: center;
-//     gap: 1rem;
-//   }
-// `
-
-// const ButtonGroup = styled.div`
-//   display: flex;
-//   justify-content: flex-end;
-//   gap: 10px;
-//   .btn {
-//     border: none;
-//     box-shadow: none;
-//     border-radius: 20rem;
-//     padding: 0;
-//     overflow: visible;
-//     cursor: pointer;
-//     width: 100px;
-//     height: 36px;
-//   }
-//   .cancelBtn {
-//     background-color: #d5d5d5;
-//   }
-//   .submitBtn {
-//     background-color: #b0d96d;
-//   }
-// `

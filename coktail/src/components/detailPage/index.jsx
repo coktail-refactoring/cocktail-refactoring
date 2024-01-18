@@ -43,6 +43,7 @@ export default function Detail({ data, type }) {
 
   const { id } = useParams()
 
+  console.log(data)
   //optimistic Ui and Debounce
   const onWishlistClickHandler = async () => {
     setWished((cur) => !cur)
@@ -182,7 +183,7 @@ export default function Detail({ data, type }) {
                     <div>
                       <img src={i.image} alt="레시피사진" />
                     </div>
-                    <p>{i.content}</p>
+                    <pre>{i.content}</pre>
                   </div>
                 </Styled.SlideBox>
               ))}

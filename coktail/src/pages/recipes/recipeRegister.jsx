@@ -76,6 +76,18 @@ export default function RecipeRegister() {
     })
   }
 
+  function txtInput(e, index) {
+    const newRecipeArr = [...recipeArr]
+    newRecipeArr[index].content = e.target.value
+    setRecipeArr(newRecipeArr);
+  }
+
+  function setImage(imgs, index) {
+    const newRecipeArr = [...recipeArr];
+    newRecipeArr[index].image = imgs;
+    setRecipeArr(newRecipeArr);
+  }
+
   //form Data
   const submitHandler = async (e, index) => {
     e.preventDefault()
@@ -217,6 +229,8 @@ export default function RecipeRegister() {
               <Styled.Step key={index + item}>
                 <div className='txtBox'>
                   <Styled.Textarea
+                    value={recipeArr[index].content}
+                    onChange={(e) => txtInput(e, index)}
                     placeholder={`${index + 1}. 설명을 입력해 주세요`}
                   />
                   <Styled.RemoveRecipeBtn onClick={removeStepHandler}>
@@ -224,7 +238,7 @@ export default function RecipeRegister() {
                   </Styled.RemoveRecipeBtn>
                 </div>
                 <div className="imgBox">
-                  <ImageUpload />
+                  <ImageUpload setImgs={(imgs) => {setImage(imgs, index)}} />
                 </div>
               </Styled.Step>
             ))}
