@@ -115,22 +115,6 @@ export const ContentContainer = styled.div`
   }
 `
 
-/* Cocktail */
-export const CocktailContainer = styled.div`
-  display: flex;
-
-  .ImageContainer {
-    width: 20rem;
-    height: 20rem;
-  }
-
-  .TextareaContainer {
-    width: 200px;
-  }
-`
-
-export const StarContainer = styled.div``
-
 //admin 페이지
 export const Content = styled.h1`
   font-size: 2rem;
@@ -141,7 +125,6 @@ export const Content = styled.h1`
 export const Banner = styled.div`
   position: relative;
   width: 100%;
-  /* overflow: hidden; */
   background-color: #f8d2cd;
 
   img {
