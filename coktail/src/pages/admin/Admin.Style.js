@@ -97,7 +97,7 @@ export const ContentContainer = styled.div`
   .ImageContainer {
     display: flex;
     width: 25rem;
-    height: 25rem;
+    height: 26rem;
   }
 
   .InputContainer {

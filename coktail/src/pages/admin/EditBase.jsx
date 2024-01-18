@@ -77,7 +77,7 @@ export default function EditBase() {
   }
 
   return (
-    <Styled.BaseContainer onSubmit={submitHandler}>
+    <Styled.ProductContainer onSubmit={submitHandler}>
       <Title text="Base 수정" />
       <div>
         <div className="ImageBaseContainer">
@@ -89,7 +89,7 @@ export default function EditBase() {
           )}
         </div>
         <div className="InputBaseContainer">
-          <Styled.Input
+          <input
             name="name"
             id="name"
             value={name}
@@ -108,6 +108,6 @@ export default function EditBase() {
         </button>
       </Styled.ButtonGroup>
       <Toaster /> {/* Toaster 컴포넌트 추가 */}
-    </Styled.BaseContainer>
+    </Styled.ProductContainer>
   )
 }
