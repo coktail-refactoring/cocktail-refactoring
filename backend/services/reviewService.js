@@ -1,7 +1,7 @@
 const { default: mongoose } = require('mongoose');
 const { User, Cocktail, DiyRecipe, CocktailReview, DiyRecipeReview } = require('../models');
 const { BadRequestError, NotFoundError, ConflictError, InternalServerError } = require('../utils/customError');
-const setParameter = require('../utils/serviceMethod');
+const { setParameter } = require('../utils/serviceMethod');
 const fs = require('fs').promises;
 const path = require('path');
 

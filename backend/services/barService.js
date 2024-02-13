@@ -2,7 +2,7 @@ const { Bar } = require('../models');
 const { NotFoundError, InternalServerError, ConflictError, BadRequestError } = require('../utils/customError');
 const fs = require('fs').promises;
 const path = require('path');
-const setParameter = require('../utils/serviceMethod');
+const { setParameter } = require('../utils/serviceMethod');
 
 const barService = {
    //* 바 목록 조회

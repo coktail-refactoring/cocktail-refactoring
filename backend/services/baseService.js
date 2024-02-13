@@ -1,8 +1,7 @@
 const { Base, } = require('../models');
 const { NotFoundError, InternalServerError, ConflictError, } = require('../utils/customError');
-const setParameter = require('../utils/serviceMethod');
 const { handleImageUpload, handleImageUpdate, deleteImage } = require('../utils/imageHandler');
-const { checkIfSame } = require('../utils/serviceMethod');
+const { checkIfSame, setParameter } = require('../utils/serviceMethod');
 
 const baseService = {
    //* 베이스 목록 조회
