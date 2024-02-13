@@ -10,7 +10,8 @@ module.exports = {
          'default': ['CocktailReview', 'DiyRecipeReview']
        };
        
-       const types = typesMap[type] ?? (() => { throw new BadRequestError('타입 오류'); })();
+      //  const types = typesMap[type] ?? (() => { throw new BadRequestError('타입 오류'); })();
+      const types = typesMap[type] ?? typesMap['default'];
        return { limit, skip, types };
    },
 
