@@ -1,5 +1,5 @@
 const axios = require('axios');
-const setToken = require('../utils/tokenHandler');
+const { setToken } = require('../utils/tokenHandler');
 const config = require("../config");
 const { User } = require('../models');
 const { InternalServerError, NotFoundError } = require("../utils/customError");
