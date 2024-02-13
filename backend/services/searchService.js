@@ -1,6 +1,6 @@
 const { default: mongoose } = require('mongoose');
 const { Base, Cocktail, DiyRecipe, User } = require('../models');
-const setParameter = require('../utils/serviceMethod');
+const { setParameter } = require('../utils/serviceMethod');
 
 const searchService = {
    async searchByKeyword(user, { keyword, cursorId, sort, cursorValue, page, perPage, type }) {
